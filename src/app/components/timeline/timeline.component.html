@@ -1,0 +1,108 @@
+
+
+<div *ngFor="let acao of timelineItens">
+
+        <article class="card is-margin-5-v">
+          <header class="is-marginless card-header">
+            <nav class="level is-fullwidth is-mobile" style="width: 100%;">
+              <div class="level-left">
+                <app-user></app-user>
+              </div>
+              <div class="level-right">
+                <a class="level-item">
+                  <span class="icon">
+                    <i class="fa fa-twitter is-twitter"></i>
+                  </span>
+                </a>
+                <a class="level-item">
+                  <span class="icon">
+                    <i class="fa fa-facebook is-facebook"></i>
+                  </span>
+                </a>
+                <a class="level-item">
+                  <span class="icon">
+                    <i class="fa fa-google-plus is-google-plus"></i>
+                  </span>
+                </a>
+                <a class="level-item">
+                  <span class="icon">
+                    <i class="fa fa-link is-link"></i>
+                  </span>
+                </a>
+              </div>
+            </nav>
+          </header>
+
+          <div class="card-content is-padding-thin-card">
+            <div>
+              <p class="title">
+                {{acao.titulo}}
+              </p>
+              <p class="subtitle">
+                {{acao.descricao}}
+              </p>
+            </div>
+            <small>
+              <a href="#" style="padding: 5px">#Financeiro</a>
+              <a href="#">#Probidade</a>
+            </small>
+          </div>
+
+
+
+          <footer class="level is-mobile">
+            <!-- p class="card-footer-item" style="justify-content: flex-start; font-size: 1rem;">
+              <i class="fa fa-user-o"></i>
+              <span>{{acao.nrColaboradores}}</span>
+              <i class="fa fa-comments-o" style="padding-left: 12px;"></i>
+              <span>321</span>
+            </p -->
+            <div class="level-left"></div>
+            <div class="level-right">
+              <div class="button is-outlined is-margin-5 is-padding-button">
+                <span class="icon"><i class="fa fa-handshake-o " style="color: #23d160" aria-hidden="true"></i></span>
+                <span>
+                  Apoiar
+                </span>
+              </div>
+              <div class="button is-outlined is-margin-5 is-padding-button">
+                <span class="icon"><i class="fa fa-users" style="color: #3273dc" aria-hidden="true"></i></span>
+                <span>
+                  Fiscalizar
+                </span>
+              </div>
+            </div>
+          </footer>
+        </article>
+
+
+    
+      <!--  div class="row">
+        <div class="col s12 m8">
+          <div class="card">
+            <div class="card-action card-header">
+              <a class="card-share-tools right" href="#">
+                  <i class="fa fa-share card-toolbar-btn"></i>
+              </a>
+              <app-user></app-user>
+            </div>
+            <span class="new badge green card-toolbar right"> {{acao.nrColaboradores}} </span>
+            <div class="card-content" style="position: relative">
+              <span class="card-title black-gray card-titulo">{{acao.titulo}}</span>
+              <p class="card-conteudo"> {{acao.descricao}} </p>
+              <div class="card-label-container">
+                <span class="card-label">Economia</span>
+                <span class="card-label">Probidade</span>
+              </div>
+            </div>
+            
+            <div class="card-action">
+              <a href="#" class="card-label">Apoiar</a>
+              <a href="#" >Verificar discussão</a>
+            </div>
+          </div>
+        </div>
+      </div -->
+            
+
+</div>

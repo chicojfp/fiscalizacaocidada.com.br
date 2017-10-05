@@ -1,0 +1,21 @@
+
+.user-avatar {
+    float: left;
+    height: 50px;
+    width: 50px;
+    background-color: lightcoral;
+    border-radius: 25px;
+    margin-right: 10px;
+}
+
+.user-name {
+    font-weight: 500;
+    font-size: 16px;
+    color: rgba(70, 70, 70, 1);
+}
+
+.user-id {
+    @extend .user-name;
+    font-size: 12px;
+    color: lightslategray;
+}

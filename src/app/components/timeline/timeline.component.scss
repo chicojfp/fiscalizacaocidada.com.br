@@ -1,0 +1,92 @@
+.is-google-plus {
+    color: #de5e53;
+}
+
+.is-facebook {
+    color: #3b5998;
+}
+
+.is-twitter {
+    color: #55acee;
+}
+
+.is-link {
+    color: gray;
+}
+
+.is-margin-5 {
+    margin: 5px;
+}
+
+.is-margin-5-v {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.is-margin-5-h {
+    margin: 0px 5px;
+}
+
+.is-padding-5 {
+    padding: 5px;
+}
+
+.is-padding-thin-card {
+    padding-bottom: 0.5rem;
+}
+
+.is-padding-button {
+    padding: 5px 30px;
+}
+
+.sem-margem {
+    margin-left: 0px;
+    margin-right: 0px;
+    width: 100%;
+}
+
+.card-toolbar-btn {
+    color: #a1a6bb;    
+}
+
+.card-toolbar {
+    position: relative;
+    right: 5px;
+}
+
+.card-header {
+    border-bottom: 1px solid rgba(160,160,160,0.2);
+    border-top: 0px;
+    margin-left: 10px; 
+    margin-right: 10px;
+}
+
+.card-label-container {
+    padding-top: 10px;
+}
+
+.card-label {
+    border: 1px solid transparent;
+    padding: 5px;
+    border-radius: 2px;
+    font-size: 0.75rem;
+    background-color: white;
+    border-color: #dbdbdb;
+    color: #363636;
+    cursor: pointer;    
+}
+
+.card-label:hover {
+    border-color: #b5b5b5;
+    color: #363636;
+}
+
+.card-titulo {
+    font-size: 25px;
+    font-weight: initial;
+}
+
+.card-conteudo {
+    font-weight: 300;
+    font-size: 16px;
+}
