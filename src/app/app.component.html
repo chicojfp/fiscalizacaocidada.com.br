@@ -1,0 +1,102 @@
+<nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="#">
+        Minha Excelência 
+      </a>
+    </div>
+
+    <!-- <div class="navbar-item has-dropdown is-hoverable">
+        <a class="navbar-link">
+          Deputados
+        </a>
+    
+        <div class="navbar-dropdown">
+          <a class="navbar-item" *ngFor="let uf of ufs">
+            {{uf}}
+          </a>
+        </div>
+      </div> -->
+            
+  </nav>
+  <div class="tags" >
+    <span class="tag" [ngClass]="{'is-primary': isUFSelecionada(uf)}"
+      *ngFor="let uf of ufs" 
+      (click)="atualizarUF(uf)">
+      {{uf}}
+    </span>
+    <!-- <span class="tag is-danger">No</span> -->
+  </div>
+
+
+
+<nav class="level card" style="padding: 5px; margin: 5px">
+  <div class="card" style="padding: 5px; margin: 5px">
+    <div class="level-item has-text-centered">
+      <div>
+        <p class="heading">Membros</p>
+        <p class="title">{{this.deputados?.length}}</p>
+      </div>
+    </div>
+  </div>
+  
+  <div class="field is-grouped is-grouped-multiline">
+    <div class="control" *ngFor="let partido of numeroPartidos">
+      <div class="tags has-addons">
+        <span class="tag">
+          {{partido.descricao}}
+        </span>
+        <span class="tag is-success">{{partido.qtd}}</span>
+      </div>
+    </div>
+  </div>
+  
+</nav>
+
+
+<div class="me-columns is-mobile is-multiline is-centered">
+  <div class="column is-full-mobile is-one-third-tablet is-one-quarter-desktop" *ngFor="let dep of deputados">
+
+    <article class="media card me-card" >
+        <figure class="media-left">
+          <p class="image is-64x85">
+            <img src="{{dep.urlFoto}}">
+          </p>
+        </figure>
+        <div class="media-content">
+          <div class="content">
+            <p>
+              <strong>{{dep.nome}}</strong> 
+              <br>
+              <strong>{{dep.siglaUf}}</strong>
+              <br>
+              <a href="#"><small>{{dep.siglaPartido}}</small> </a>
+            </p>
+          </div>
+          <!-- <nav class="level is-mobile">
+            <div class="level-left">
+              <a class="level-item">
+                <span class="icon is-small"><i class="fa fa-reply"></i></span>
+              </a>
+              <a class="level-item">
+                <span class="icon is-small"><i class="fa fa-retweet"></i></span>
+              </a>
+              <a class="level-item">
+                <span class="icon is-small"><i class="fa fa-heart"></i></span>
+              </a>
+            </div>
+          </nav> -->
+        </div>
+        <!-- <div class="media-right">
+          <button class="delete"></button>
+        </div> -->
+      </article>
+  </div>
+</div>
+
+<div class="modal" [ngClass]="{'is-active': modalAtivo}">
+  <div class="modal-background" (click)="fecharModal()"></div>
+  <div class="modal-content">
+      <app-deputado-detalhe [deputado]="deputado"></app-deputado-detalhe>
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="fecharModal()"></button>
+</div>

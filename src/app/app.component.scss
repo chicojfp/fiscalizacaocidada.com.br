@@ -1,0 +1,37 @@
+.me-media {
+    border: solid #EEE 2px;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 5px;
+}
+
+.me-columns {
+    display: flex;
+    flex-wrap: wrap;
+
+    .me-column {
+        margin: 5px;
+    }
+}
+
+.is-64x85 {
+    width: 64px; 
+    height:85px;
+}
+
+
+.me-card {
+    padding: 10px;
+}
+
+.me-card:hover {
+    box-shadow: 0 3px 4px rgba(10,10,10,.2), 0 0 0 1px rgba(10,10,10,.2);
+    position: relative;
+    left: -2px;
+    top: -2px;
+}
+
+.tag:hover {
+    border-color: #465351;
+    cursor: pointer;
+}
