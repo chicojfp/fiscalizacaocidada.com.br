@@ -6,12 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { DeputadosComponent } from './componentes/deputados/deputados.component';
 import { DeputadoDetalheComponent } from './componentes/deputado-detalhe/deputado-detalhe.component';
+import { DeputadoResumoComponent } from './componentes/deputado-resumo/deputado-resumo.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeputadosComponent,
-    DeputadoDetalheComponent
+    DeputadoDetalheComponent,
+    DeputadoResumoComponent
   ],
   imports: [
     BrowserModule,
