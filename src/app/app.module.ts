@@ -14,7 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   { path: 'deputados', component: DeputadosComponent },
   { path: 'deputados/:id/despesas',      component: DespesasComponent },
-  { path: '', component: DeputadosComponent },
+  { path: '', redirectTo: '/deputados', pathMatch: 'full' },
   // {
   //   path: 'heroes',
   //   component: DespesasComponent,
