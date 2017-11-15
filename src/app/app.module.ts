@@ -14,7 +14,7 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   { path: 'deputados', component: DeputadosComponent },
   { path: 'deputados/:id/despesas',      component: DespesasComponent },
-  { path: '', redirectTo: '/deputados', pathMatch: 'full' },
+  { path: '', redirectTo: 'deputados', pathMatch: 'full' },
   // {
   //   path: 'heroes',
   //   component: DespesasComponent,
@@ -39,6 +39,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes
       // { enableTracing: true } // <-- debugging purposes only
+      , { useHash: true }
     ),
     BrowserModule,
     FormsModule,
