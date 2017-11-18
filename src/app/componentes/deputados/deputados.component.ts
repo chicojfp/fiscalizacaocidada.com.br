@@ -23,25 +23,22 @@ export class DeputadosComponent implements OnInit {
   ufSelecionada = 'PE';
 
   constructor(public deputadosService: DeputadosService) {
-    this.atualizarUF(null);
+    this.atualizarUF(this.ufSelecionada);
   }
 
   ngOnInit() { }
 
   atualizarUF(uf: string) {
     this.deputadosService.recuperarListaDeputados(uf).subscribe(
-      x => {
+      excelencias => {
         this.ufSelecionada = uf;
-        console.log(x);
-        this.deputados = x;
+        this.deputados = excelencias;
       }
     );
   }
 
   filtrarPartido(sigla: string) {
-    console.log(sigla);
     const partido = this.deputadosService.partidos.filter(p => p.sigla === sigla);
-    console.log(partido);
     partido[0].ativo = !partido[0].ativo;
   }
 

@@ -1,8 +1,12 @@
 <div class="columns is-multiline is-centered" >
-  <button class="button is-small" [ngClass]="{'is-primary': uf === ufSelecionada}"
+  <button class="button is-small is-uf" [ngClass]="{'is-success': uf === ufSelecionada}"
     *ngFor="let uf of ufs" 
     (click)="atualizarUF(uf)">
     {{uf}}
+  </button>
+  <button class="button is-small is-uf is-outlined" [ngClass]="{'is-success': !ufSelecionada, 'is-primary': ufSelecionada}"
+    (click)="atualizarUF(null)">
+    Todos
   </button>
   
 </div>
