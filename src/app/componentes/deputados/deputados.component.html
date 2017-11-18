@@ -1,10 +1,10 @@
 <div class="columns is-multiline is-centered" >
-  <button class="button is-small" [ngClass]="{'is-primary': isUFSelecionada(uf)}"
+  <button class="button is-small" [ngClass]="{'is-primary': uf === ufSelecionada}"
     *ngFor="let uf of ufs" 
     (click)="atualizarUF(uf)">
     {{uf}}
   </button>
-  <!--buttonpan class="tag is-danger">No</span> -->
+  
 </div>
 
 <nav class="level card is-grouped is-grouped-multiline" style="padding: 5px; margin: 5px">
@@ -18,12 +18,12 @@
   </div>
 
   <div class="field is-grouped is-grouped-multiline">
-    <div class="control" *ngFor="let partido of numeroPartidos">
+    <div class="control" *ngFor="let partido of deputadosService.partidos">
       <div class="tags has-addons">
-        <span class="tag">
-          {{partido.descricao}}
-        </span>
-        <span class="tag is-success">{{partido.qtd}}</span>
+        <a class="tag" (click)="filtrarPartido(partido.sigla)">
+          {{partido.sigla}}
+        </a>
+        <span class="tag" [ngClass]="{'is-success': partido.ativo}">{{partido.qtd}}</span>
       </div>
     </div>
   </div>
@@ -31,7 +31,7 @@
 </nav>
 
 <div class="columns is-multiline ">
-    <app-deputado-resumo *ngFor="let dep of deputados"
+    <app-deputado-resumo *ngFor="let dep of recuperarDeputados()"
       class="column is-one-third-tablet is-one-quarter-desktop is-padding-small"
       [excelencia]="dep">
     </app-deputado-resumo>

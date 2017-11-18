@@ -1,3 +1,4 @@
+import { DeputadosService } from './componentes/deputados/deputados.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -45,7 +46,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [DeputadosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
