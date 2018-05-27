@@ -23,10 +23,8 @@ export class DespesasComponent implements OnInit {
   public recuperarDespesas(id) {
     this.http.get(`https://dadosabertos.camara.leg.br/api/v2/deputados/${id}/despesas?ano=2016&mes=12&itens=1000`)
       .subscribe( p => {
-        console.log(p.json());
         this.despesas = p.json().dados;
         this.tratarDespesas(this.despesas);
-        console.log(this.despesas);
       });
   }
 
@@ -43,11 +41,9 @@ export class DespesasComponent implements OnInit {
 
       sumario[this.despesas[i].tipoDespesa] = resumo;
     }
-    // console.log(sumario);
     // this.numeroPartidos = [];
     Object.keys(sumario).forEach(i => mapa_despesas.push({tipoDespesa: i, detalhe: sumario[i]}));
 
-    console.log(this.despesas);
 
     this.despesas = mapa_despesas.sort((a, b) => {
       return (<string>a.tipoDespesa).localeCompare(b.tipoDespesa);

@@ -1,3 +1,5 @@
+import { SenadorService } from './componentes/senadores/senador.service';
+import { SenadoresComponent } from './componentes/senadores/senadores.component';
 import { DeputadosService } from './componentes/deputados/deputados.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -7,13 +9,14 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { DeputadosComponent } from './componentes/deputados/deputados.component';
 import { DeputadoDetalheComponent } from './componentes/deputado-detalhe/deputado-detalhe.component';
-import { DeputadoResumoComponent } from './componentes/deputado-resumo/deputado-resumo.component';
+import { ExcelenciaResumoComponent } from './componentes/excelencia-resumo/excelencia-resumo.component';
 import { DespesasComponent } from './componentes/despesas/despesas.component';
 
 import { RouterModule, Routes } from '@angular/router';
 
 const appRoutes: Routes = [
   { path: 'deputados', component: DeputadosComponent },
+  { path: 'senadores', component: SenadoresComponent },
   { path: 'deputados/:id/despesas',      component: DespesasComponent },
   { path: '', redirectTo: 'deputados', pathMatch: 'full' },
   // {
@@ -33,8 +36,9 @@ const appRoutes: Routes = [
     AppComponent,
     DeputadosComponent,
     DeputadoDetalheComponent,
-    DeputadoResumoComponent,
-    DespesasComponent
+    ExcelenciaResumoComponent,
+    DespesasComponent,
+    SenadoresComponent,
   ],
   imports: [
     RouterModule.forRoot(
@@ -46,7 +50,7 @@ const appRoutes: Routes = [
     FormsModule,
     HttpModule
   ],
-  providers: [DeputadosService],
+  providers: [DeputadosService, SenadorService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

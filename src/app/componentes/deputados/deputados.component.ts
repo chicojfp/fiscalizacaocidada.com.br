@@ -1,5 +1,5 @@
 import { DeputadosService } from './deputados.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Http } from '@angular/http';
 
 @Component({
@@ -9,18 +9,9 @@ import { Http } from '@angular/http';
 })
 export class DeputadosComponent implements OnInit {
 
-  deputados: any[] = [];
-  deputadosFiltrados: any[] = [];
-
-  deputado = null;
-  modalAtivo = false;
-
-  proximaConsulta = null;
-
-  ufs = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT',
-    'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR',
-    'SC', 'SP', 'SE', 'TO'];
-  ufSelecionada = 'PE';
+  excelencias: any[] = [];
+  excelenciasFiltradas: any[] = [];
+  ufSelecionada = undefined;
 
   constructor(public deputadosService: DeputadosService) {
     this.atualizarUF(this.ufSelecionada);
@@ -28,11 +19,15 @@ export class DeputadosComponent implements OnInit {
 
   ngOnInit() { }
 
+  recuperarUFs(): String[] {
+    return this.deputadosService.recuperarUFs();
+  }
+
   atualizarUF(uf: string) {
     this.deputadosService.recuperarListaDeputados(uf).subscribe(
       excelencias => {
         this.ufSelecionada = uf;
-        this.deputados = excelencias;
+        this.excelencias = excelencias;
       }
     );
   }
@@ -43,7 +38,11 @@ export class DeputadosComponent implements OnInit {
   }
 
   recuperarDeputados() {
-    return this.deputados.filter(d => d.partido.ativo);
+    return this.excelencias.filter(d => d.partido.ativo);
+  }
+
+  recuperarPartidos() {
+    return this.deputadosService.partidos;
   }
 
 }

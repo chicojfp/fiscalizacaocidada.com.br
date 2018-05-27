@@ -1,3 +1,4 @@
+import { ExcelenciaBaseService } from './../excelencia/excelencia.service';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/observable';
@@ -5,7 +6,7 @@ import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/map';
 
 @Injectable()
-export class DeputadosService {
+export class DeputadosService extends ExcelenciaBaseService {
 
   deputados: any[] = [];
   deputadosFiltrados: any[] = [];
@@ -17,7 +18,9 @@ export class DeputadosService {
 
   proximaConsulta = null;
 
-  constructor(public http: Http) { }
+  constructor(public http: Http) { 
+    super();
+  }
 
   public retornarFiltroUF(uf): String {
     if (uf) {
@@ -39,25 +42,6 @@ export class DeputadosService {
               observer.next(this.deputados);
           });
 
-    });
-  }
-
-  private adicionarPartido(partidos: any[], sigla: string): any {
-    let partido = partidos[sigla];
-    if (!partido) {
-      partido = {sigla: sigla, qtd: 0, ativo: true};
-    }
-    partido.qtd += 1;
-    partidos[sigla] = partido;
-
-    return partido;
-  }
-
-  private mapearPartidos(partidos: any[]) {
-    this.partidos.splice(0, this.partidos.length);
-    Object.keys(partidos).forEach(i => this.partidos.push(partidos[i]));
-    this.partidos = this.partidos.sort((a, b) => {
-      return b.qtd - a.qtd;
     });
   }
 
@@ -84,20 +68,6 @@ export class DeputadosService {
         const resposta = x.json();
         return resposta;
     });
-  }
-
-  recuperarNrPartidos() {
-    for (let i = 0; i < this.deputados.length; i++) {
-        this.counts[this.deputados[i].siglaPartido] = 1 + (this.counts[this.deputados[i].siglaPartido] || 0);
-    }
-    this.partidos = [];
-    Object.keys(this.counts).forEach(i => this.partidos.push({descricao: i, qtd: this.counts[i], ativo: true}));
-
-    this.partidos = this.partidos.sort((a, b) => {
-      return b.qtd - a.qtd;
-    });
-
-    this.deputadosFiltrados = this.deputados;
   }
 
   isUFSelecionada(uf) {
