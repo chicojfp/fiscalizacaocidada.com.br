@@ -11,7 +11,7 @@ export class DeputadosComponent implements OnInit {
 
   excelencias: any[] = [];
   excelenciasFiltradas: any[] = [];
-  ufSelecionada = undefined;
+  ufSelecionada = 'AL';
 
   constructor(public deputadosService: DeputadosService) {
     this.atualizarUF(this.ufSelecionada);
@@ -24,8 +24,9 @@ export class DeputadosComponent implements OnInit {
   }
 
   atualizarUF(uf: string) {
-    this.deputadosService.recuperarListaDeputados(uf).subscribe(
+    this.deputadosService.recuperarExcelencias(uf).subscribe(
       excelencias => {
+        console.log(excelencias);
         this.ufSelecionada = uf;
         this.excelencias = excelencias;
       }

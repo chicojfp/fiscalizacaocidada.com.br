@@ -8,7 +8,6 @@ import { ExcelenciaBaseService } from '../excelencia/excelencia.service';
   styleUrls: ['./senadores.component.css']
 })
 export class SenadoresComponent implements OnInit {
-
   excelencias: any[] = [];
   excelenciasFiltradas: any[] = [];
   ufSelecionada = undefined;
@@ -24,7 +23,7 @@ export class SenadoresComponent implements OnInit {
   ngOnInit() { }
 
   atualizarUF(uf: string) {
-    this.senadoresService.recuperarListaDeputados(uf).subscribe(
+    this.senadoresService.recuperarExcelencias(uf).subscribe(
       excelencias => {
         console.log('Excelencias....');
         this.ufSelecionada = uf;

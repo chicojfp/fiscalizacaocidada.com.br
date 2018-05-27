@@ -6,44 +6,16 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class SenadorService extends ExcelenciaBaseService {
-
-  deputados: any[] = [];
-  deputadosFiltrados: any[] = [];
-  counts = {};
-
-  deputado = null;
   modalAtivo = false;
   partidos = [];
-
   proximaConsulta = null;
 
   constructor(public http: Http) {
-    super();
+    super(http);
+    this.urlConsulta = 'https://legis.senado.leg.br/dadosabertos/senador/lista/atual';
   }
 
-  public retornarFiltroUF(uf): String {
-    if (uf) {
-      return '?uf=' + uf;
-    }
-    return '';
-  }
-
-  recuperarListaDeputados(uf: string): Observable<any[]> {
-    this.deputados = [];
-    this.counts = {};
-    return new Observable(observer => {
-      this.carregarDeputados('https://legis.senado.leg.br/dadosabertos/senador/lista/atual' +
-          this.retornarFiltroUF(uf)).subscribe(
-            resposta => {
-              this.partidos = [];
-              this.mapearParaExcelencia(resposta);
-              observer.next(this.deputados);
-          });
-
-    });
-  }
-
-  public mapearParaExcelencia(resposta) {
+  public mapearRespostaParaExcelencias(resposta) {
     resposta.ListaParlamentarEmExercicio.Parlamentares.Parlamentar.forEach(excelencia => {
       const exc: Excelencia = {
         nome: excelencia.IdentificacaoParlamentar.NomeParlamentar,
@@ -51,23 +23,23 @@ export class SenadorService extends ExcelenciaBaseService {
         urlFoto: excelencia.IdentificacaoParlamentar.UrlFotoParlamentar,
         siglaUf: excelencia.IdentificacaoParlamentar.UfParlamentar
       };
-      this.deputados.push(exc);
+      this.excelencias.push(exc);
       exc.partido = this.adicionarPartido(this.partidos, excelencia.IdentificacaoParlamentar.SiglaPartidoParlamentar);
     });
     this.mapearPartidos(this.partidos);
-    // this.carregarProximosDeputados(resposta.links.filter(i => i.rel === 'next'));
   }
 
-  carregarDeputados(url: string): Observable<any> {
-    return this.http.get(url).map(
-      x => {
-        const resposta = x.json();
-        return resposta;
-    });
+  protected recuperarListaExcelencia(resposta: any): any[] {
+    return resposta.ListaParlamentarEmExercicio.Parlamentares.Parlamentar;
   }
 
-  isUFSelecionada(uf) {
-    return uf === uf;
+  public mapearItemParaExcelencia(senador: any): Excelencia {
+    return {
+      nome: senador.IdentificacaoParlamentar.NomeParlamentar,
+      partido: senador.IdentificacaoParlamentar.SiglaPartidoParlamentar,
+      urlFoto: senador.IdentificacaoParlamentar.UrlFotoParlamentar,
+      siglaUf: senador.IdentificacaoParlamentar.UfParlamentar
+    };;
   }
 
 }
