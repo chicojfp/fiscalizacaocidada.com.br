@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class ExcelenciaBaseService {
-    ufs = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT',
+    ufs: string[] = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT',
         'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR',
         'SC', 'SP', 'SE', 'TO'];
     partidos = [];
@@ -14,7 +14,7 @@ export class ExcelenciaBaseService {
 
     constructor(public http: Http) { }
 
-    public recuperarUFs(): String[] {
+    public recuperarUFs(): string[] {
         return this.ufs;
     }
 
@@ -71,14 +71,22 @@ export class ExcelenciaBaseService {
         this.carregarDemaisExcelencias(resposta);
     }
 
+    protected http2https(ex: Excelencia) {
+        ex.urlFoto = ex.urlFoto.replace('http:', 'https:');
+        return ex;
+    }
+
     public mapearItemParaExcelencia(resposta: any): Excelencia {
-        const exc = resposta;
-        exc.partido = { sigla: resposta.siglaPartido };
+        // const exc = resposta;
+        const exc = this.http2https(resposta);
+        exc.partido = { sigla: resposta.siglaPartido, ativo: false };
         return exc;
     }
 
     carregarDemaisExcelencias(resposta: any) {
-        if (!resposta.links) return;
+        if (!resposta.links) {
+          return;
+        }
         const links = resposta.links.filter(i => i.rel === 'next');
 
         if (links.length > 0) {
@@ -101,8 +109,6 @@ export class ExcelenciaBaseService {
         return new Observable(observer => {
             this.carregarExcelencias(this.recuperarURLConsulta(uf)).subscribe(
                 resposta => {
-                    console.log('Resposta 2');
-                    console.log(resposta);
                     this.partidos = [];
                     this.mapearRespostaParaExcelencias(resposta);
                     observer.next(this.excelencias);
@@ -118,17 +124,4 @@ export class ExcelenciaBaseService {
             });
     }
 
-    // recuperarNrPartidos() {
-    // for (let i = 0; i < this.deputados.length; i++) {
-    //     this.counts[this.deputados[i].siglaPartido] = 1 + (this.counts[this.deputados[i].siglaPartido] || 0);
-    // }
-    // this.partidos = [];
-    // Object.keys(this.counts).forEach(i => this.partidos.push({descricao: i, qtd: this.counts[i], ativo: true}));
-
-    // this.partidos = this.partidos.sort((a, b) => {
-    //     return b.qtd - a.qtd;
-    // });
-
-    // this.deputadosFiltrados = this.deputados;
-    // }
 }

@@ -17,12 +17,12 @@ export class SenadorService extends ExcelenciaBaseService {
 
   public mapearRespostaParaExcelencias(resposta) {
     resposta.ListaParlamentarEmExercicio.Parlamentares.Parlamentar.forEach(excelencia => {
-      const exc: Excelencia = {
+      const exc: Excelencia = this.http2https({
         nome: excelencia.IdentificacaoParlamentar.NomeParlamentar,
         partido: excelencia.IdentificacaoParlamentar.SiglaPartidoParlamentar,
         urlFoto: excelencia.IdentificacaoParlamentar.UrlFotoParlamentar,
         siglaUf: excelencia.IdentificacaoParlamentar.UfParlamentar
-      };
+      });
       this.excelencias.push(exc);
       exc.partido = this.adicionarPartido(this.partidos, excelencia.IdentificacaoParlamentar.SiglaPartidoParlamentar);
     });
@@ -31,15 +31,6 @@ export class SenadorService extends ExcelenciaBaseService {
 
   protected recuperarListaExcelencia(resposta: any): any[] {
     return resposta.ListaParlamentarEmExercicio.Parlamentares.Parlamentar;
-  }
-
-  public mapearItemParaExcelencia(senador: any): Excelencia {
-    return {
-      nome: senador.IdentificacaoParlamentar.NomeParlamentar,
-      partido: senador.IdentificacaoParlamentar.SiglaPartidoParlamentar,
-      urlFoto: senador.IdentificacaoParlamentar.UrlFotoParlamentar,
-      siglaUf: senador.IdentificacaoParlamentar.UfParlamentar
-    };;
   }
 
 }

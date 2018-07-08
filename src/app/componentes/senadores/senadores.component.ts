@@ -13,6 +13,8 @@ export class SenadoresComponent implements OnInit {
   ufSelecionada = undefined;
 
   constructor(public senadoresService: SenadorService) {
+    const ufs = this.senadoresService.recuperarUFs();
+    this.ufSelecionada = ufs[Math.ceil(Math.random() * 27)];
     this.atualizarUF(this.ufSelecionada);
   }
 
@@ -25,7 +27,6 @@ export class SenadoresComponent implements OnInit {
   atualizarUF(uf: string) {
     this.senadoresService.recuperarExcelencias(uf).subscribe(
       excelencias => {
-        console.log('Excelencias....');
         this.ufSelecionada = uf;
         this.excelencias = excelencias;
       }

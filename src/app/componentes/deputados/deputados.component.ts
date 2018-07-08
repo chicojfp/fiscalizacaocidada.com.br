@@ -14,6 +14,8 @@ export class DeputadosComponent implements OnInit {
   ufSelecionada = 'AL';
 
   constructor(public deputadosService: DeputadosService) {
+    const ufs = this.deputadosService.recuperarUFs();
+    this.ufSelecionada = ufs[Math.ceil(Math.random() * 27)];
     this.atualizarUF(this.ufSelecionada);
   }
 
@@ -26,7 +28,6 @@ export class DeputadosComponent implements OnInit {
   atualizarUF(uf: string) {
     this.deputadosService.recuperarExcelencias(uf).subscribe(
       excelencias => {
-        console.log(excelencias);
         this.ufSelecionada = uf;
         this.excelencias = excelencias;
       }
