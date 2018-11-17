@@ -1,7 +1,7 @@
 import { ExcelenciaBaseService } from './../excelencia/excelencia.service';
 import { Excelencia } from './../excelencia/excelencia';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable()

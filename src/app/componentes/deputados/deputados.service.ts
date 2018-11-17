@@ -1,9 +1,6 @@
 import { ExcelenciaBaseService } from './../excelencia/excelencia.service';
 import { Http } from '@angular/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
 
 @Injectable()
 export class DeputadosService extends ExcelenciaBaseService {
@@ -18,7 +15,7 @@ export class DeputadosService extends ExcelenciaBaseService {
 
   proximaConsulta = null;
 
-  constructor(public http: Http) { 
+  constructor(public http: Http) {
     super(http);
     this.urlConsulta = 'https://dadosabertos.camara.leg.br/api/v2/deputados?itens=600&ordem=ASC&ordenarPor=nome';
   }

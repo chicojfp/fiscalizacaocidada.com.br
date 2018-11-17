@@ -1,6 +1,7 @@
 import { Excelencia } from './../excelencia/excelencia';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/observable';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 @Injectable()
@@ -38,11 +39,11 @@ export class ExcelenciaBaseService {
     }
 
     public carregarExcelencias(url: string): Observable<any> {
-        return this.http.get(url).map(
+        return this.http.get(url).pipe(map(
             x => {
                 const resposta = x.json();
                 return resposta;
-            });
+            }));
     }
 
     public retornarFiltroUF(uf): String {
@@ -97,11 +98,13 @@ export class ExcelenciaBaseService {
     }
 
     carregarDeputados(url: string): Observable<any> {
-        return this.http.get(url).map(
+        return this.http.get(url).pipe(map(
             x => {
                 const resposta = x.json();
                 return resposta;
-            });
+            }
+          )
+        );
     }
 
     public recuperarExcelencias(uf: string): Observable<any[]> {
@@ -117,11 +120,13 @@ export class ExcelenciaBaseService {
     }
 
     realizarConsultaExcelencia(url: string): Observable<any> {
-        return this.http.get(url).map(
+        return this.http.get(url).pipe(
+            map(
             x => {
                 const resposta = x.json();
                 return resposta;
-            });
+            })
+        );
     }
 
 }
